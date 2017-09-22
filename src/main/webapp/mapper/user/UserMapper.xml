@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.borrow.supermarket.dao.UserDao">
+ <sql id="baseSql">
+    id,
+	useridentifier,
+	phone,
+	salt,
+	password,
+	status,
+	lastfailedsignintime,
+	loginfailedcount,
+	lastsuccesssignintime,
+	signUpTime
+ </sql>
+	
+	<insert id="saveUser" parameterType="UserModel">
+	 insert into supermarket.user(useridentifier,phone,salt,password,status) 
+	 values 
+	 (#{useridentifier},#{phone},#{salt},#{password},#{status})
+	</insert>
+	
+	<select id="searcUserByPhone" parameterType="UserModel" resultType="UserModel">
+	 select <include refid="baseSql"/> from supermarket.user where phone = #{phone}
+	</select>		
+		
+	<select id="searchUserByUserIdentifier" parameterType="String" resultType="UserModel">
+	select <include refid="baseSql"/> from supermarket.user where useridentifier = #{userIdentifier}
+	</select>
+	<update id="updateByEntity" parameterType="UserModel">
+    update supermarket.user
+     <set >
+      <if test="useridentifier != null" >
+        userIdentifier = #{useridentifier},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone},
+      </if>
+      <if test="password != null" >
+        password = #{password},
+      </if>
+      <if test="lastfailedsignintime != null" >
+        lastFailedSignInTime = #{lastfailedsignintime},
+      </if>
+      <if test="loginfailedcount != null" >
+        loginFailedCount = #{loginfailedcount},
+      </if>
+      <if test="salt != null" >
+        salt = #{salt},
+      </if>
+      <if test="signuptime != null" >
+        signUpTime = #{signuptime},
+      </if>
+      <if test="lastsuccesssignintime != null" >
+        lastSuccessSignInTime = #{lastsuccesssignintime},
+      </if>
+      <if test=" status != null">
+      	status = #{status}
+      </if>
+    </set>
+    where id = #{id}
+ </update>
+ 
+  <select id="getByPage" parameterType="Map" resultType="UserModel">
+     select 
+     <include refid="baseSql"/> from supermarket.user
+     <where>
+         1 = 1
+        <if test="t.useridentifier != null and t.useridentifier != '' ">
+        and useridentifier = #{t.useridentifier}
+       </if>
+       <if test="t.phone != null and t.phone != '' ">
+       and phone = #{t.phone}
+       </if>
+     </where>
+ </select>
+</mapper>

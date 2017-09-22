@@ -1,0 +1,3 @@
+1 每次部署修改swagger下的index.html文件，使用正确的url
+2 每次部署修改WEB-INF/classes下的supermarket.properties文件,连接服务器的数据库
+3 部署到服务器上可能会包冲突，删除三个2.1.0版本的jar

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<configuration>
+	<properties>
+		<property name="dialect" value="mysql" />
+		<property name="pageSqlId" value=".*Page$" />
+	</properties>
+	<typeAliases>
+		<typeAlias type="com.borrow.supermarket.model.UserModel" alias="UserModel"/>
+		<typeAlias type="com.borrow.supermarket.model.VericodesModel" alias="VericodesModel"/>
+		<typeAlias type="com.borrow.supermarket.model.LendModel" alias="LendModel"/>
+		<typeAlias type="com.borrow.supermarket.model.CreditModel" alias="CreditModel"/>
+		<typeAlias type="com.borrow.supermarket.model.SafeModel" alias="SafeModel"/>
+		<typeAlias type="com.borrow.supermarket.model.OrderModel" alias="OrderModel"/>
+		<typeAlias type="com.borrow.supermarket.response.result.LendPageDTOResult" alias="LendPageDTOResult"/>
+		<typeAlias type="com.borrow.supermarket.response.result.SafePageResultDTO" alias="SafePageResultDTO"/>
+		<typeAlias type="com.borrow.supermarket.response.result.CreditPageResultDTO" alias="CreditPageResultDTO"/>
+		<typeAlias type="com.borrow.supermarket.response.result.GetUserOrdersResultDTO" alias="GetUserOrdersResultDTO"/>
+		<typeAlias type="com.borrow.supermarket.response.result.LendDetailDTOResult" alias="LendDetailDTOResult"/>
+		<typeAlias type="com.borrow.supermarket.request.dto.LendDetailRequestDTO" alias="LendDetailRequestDTO"/>
+		<typeAlias type="com.borrow.supermarket.request.dto.GetNewOrderRequestDTO" alias="GetNewOrderRequestDTO"/>
+	</typeAliases>
+	<plugins>
+		<plugin interceptor="com.borrow.supermarket.mybatis.PageInterceptor"></plugin>
+	</plugins>
+</configuration>

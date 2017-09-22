@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.borrow.supermarket.dao.CreditDao">
+ <sql id="baseSql">
+     id,
+	 identifier,
+	 criditName,
+	 criditPicUrl,
+	 criditUrl,
+	 criditSpecial,
+	 status,
+	 createDate,
+	 updateDate,
+	 totalApply
+ </sql>
+ <select id="getInfo" parameterType="CreditModel" resultType="CreditModel">
+       select 
+       <include refid="baseSql"/>
+       from supermarket.cridit  where identifier = #{identifier}
+ </select>
+	 <select id="getByPage" parameterType="Map" resultType="CreditModel">
+     select 
+     <include refid="baseSql"/>
+       from supermarket.cridit 
+       <where>
+          1 = 1
+         <if test="t.criditName != null and t.criditName != '' ">
+          and criditName = #{t.criditName}
+         </if>
+       </where>
+   </select>
+	
+	<insert id="save" parameterType="CreditModel">
+	   insert into supermarket.cridit
+	   (
+	   		 identifier,
+			 criditName,
+			 criditPicUrl,
+			 criditUrl,
+			 criditSpecial,
+			 status,
+			 createDate,
+			 updateDate
+	   ) values(
+	        #{identifier},
+			#{criditName},
+			#{criditPicUrl},
+			#{criditUrl},
+			#{criditSpecial},
+			 1,
+			 NOW(),
+			 NOW()
+	   )
+	</insert>
+	
+	<update id="update" parameterType="CreditModel">
+	 update supermarket.cridit 
+	 set
+			 criditName = #{criditName},
+			 criditPicUrl = #{criditPicUrl},
+			 criditUrl = #{criditUrl},
+			 criditSpecial = #{criditSpecial},
+			 updateDate = NOW()
+	   where identifier = #{identifier}
+	</update>
+ 
+ 
+ <update id="updateCreditStatus" parameterType="CreditModel">
+   update supermarket.cridit set status = #{status} where identifier = #{identifier}
+ </update>
+ 
+ 
+ <select id="getCreditByPage" parameterType="Map" resultType="CreditPageResultDTO">
+   select 
+   <include refid="baseSql"/>
+   from supermarket.cridit where status = 2  order by totalApply desc
+   </select>
+   
+   
+</mapper>

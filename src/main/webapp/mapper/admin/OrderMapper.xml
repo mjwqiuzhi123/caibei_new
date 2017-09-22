@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.borrow.supermarket.dao.OrderDao">
+ <sql id="baseSql">
+    o.id as id,
+	o.identifier as identifier,
+	o.userId as userId,
+	o.productId as productId,
+	o.type as type,
+	o.cashback as cashback,
+	o.createDate as createDate,
+	o.updateDate as updateDate,
+	o.phone as phone,
+	o.orderPictureOne as orderPictureOne,
+	o.orderPictureTwo as orderPictureTwo,
+	o.orderPictureThree as orderPictureThree,
+	u.phone as userPhone,
+	l.lendName as lendName,
+    o.cashbackDate,
+	o.lendMoney,
+	o.lendPerid
+ </sql>
+ 
+ <sql id="baseSql2">
+    o.identifier AS identifier,
+	o.cashback AS cashbackInfo,
+	l.lendName AS lendName,
+	o.cashbackDate AS cashbackDate,
+	o.lendMoney AS lendMoney,
+	o.lendPerid AS lendPerid
+ </sql>
+	 <select id="getByPage" parameterType="Map" resultType="OrderModel">
+     select 
+     <include refid="baseSql"/>
+       from supermarket.order o inner join supermarket.user u on o.userId = u.id inner join supermarket.lend l on o.productId = l.id
+      <where>
+       1 = 1
+       <if test="t.orderIdentifier != null and t.orderIdentifier != '' ">
+        and o.identifier = #{t.orderIdentifier}
+       </if>
+       <if test="t.orderPhone != null and t.orderPhone != '' ">
+       and u.phone = #{t.orderPhone}
+       </if>
+       <if test="t.cashback != null and t.cashback != 0 ">
+        and o.cashback = #{t.cashback}
+       </if>
+      </where>
+   </select>
+   
+   <select id="getInfo" parameterType="OrderModel" resultType="OrderModel">
+    select 
+     <include refid="baseSql"/>
+       from supermarket.order o inner join supermarket.user u on o.userId = u.id inner join supermarket.lend l on o.productId = l.id
+      where o.id = #{id}
+   </select>
+   
+   <update id="updateOrderStatus" parameterType="OrderModel">
+   
+     update supermarket.order  set cashback = #{cashback} where id = #{id}
+   </update>
+   
+   <select id="getUserOrders" parameterType="String" resultType="GetUserOrdersResultDTO">
+         select  <include refid="baseSql2"/> from supermarket.order o INNER JOIN 
+         supermarket.user u ON o.userId = u.id INNER JOIN supermarket.lend l 
+		 ON o.productId = l.id
+		 WHERE  u.useridentifier = #{userIdentifier}
+   </select>
+   
+   <insert id="save" parameterType="OrderModel">
+    insert into supermarket.order(identifier,userId,productId,type,lendMoney,lendPerid,createDate,updateDate)
+    values (#{identifier},#{userId},#{productId},#{type},#{lendMoney},#{lendPerid},NOW(),NOW())
+   </insert>
+   
+   <select id="getNewOrderInfo" resultType="GetNewOrderRequestDTO">
+    select
+    o.createDate as createDate,
+    REPLACE(u.phone,SUBSTR(u.phone,4,5), '****') AS phone,
+    o.lendMoney as lendMoney
+    from supermarket.order o inner join supermarket.user u on o.userId = u.id order by o.id desc limit 0,1
+   </select>
+   
+   <select id="getTotalLendMoneyInfo" resultType="GetNewOrderRequestDTO">
+    SELECT
+    SUM(o.lendMoney) AS totalLendMoney
+    FROM supermarket.order o 
+   </select>
+   
+   <select id="getTotalLendPersonInfo" resultType="GetNewOrderRequestDTO">
+    SELECT
+    COUNT(u.id) AS servicePersonTime
+    FROM  supermarket.user u 
+   </select>
+</mapper>
