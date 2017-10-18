@@ -18,6 +18,7 @@ import com.borrow.supermarket.mq.MessageSend;
 import com.borrow.supermarket.request.dto.LendDetailRequestDTO;
 import com.borrow.supermarket.request.dto.LendPageRequestDTO;
 import com.borrow.supermarket.response.result.LendDetailDTOResult;
+import com.borrow.supermarket.response.result.LendPageDTOResult;
 import com.borrow.supermarket.response.result.SendMsgDTOResult;
 import com.borrow.supermarket.service.LendService;
 import com.borrow.supermarket.util.AliMessageUtil;
@@ -60,7 +61,7 @@ public class LendController extends BaseController
 	 try { 
     	if (bind.hasErrors())
     		return getValidErrors(bind).getAsJSON();
-    	PageWebDTOResult pageresult = this.lendServiceI.getLendByPage(lendPageRequestDTO);
+    	PageWebDTOResult<LendPageDTOResult> pageresult = this.lendServiceI.getLendByPage(lendPageRequestDTO);
     	return pageresult.getAsJSON();
     } catch (Exception e) {
     	ResponseEntity messageResult = new ResponseEntity();
