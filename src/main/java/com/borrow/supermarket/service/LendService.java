@@ -81,12 +81,12 @@ public class LendService
 	  public PageWebDTOResult<LendPageDTOResult> getLendByPage(LendPageRequestDTO lendPageRequestDTO)
 	  {
 	    PageParameter pageweb = new PageParameter(lendPageRequestDTO.getNumber().intValue());
-	    Map parameterMap = new HashMap();
+	    Map<String, Object> parameterMap = new HashMap<String, Object>();
 	    parameterMap.put("t", lendPageRequestDTO);
 	    parameterMap.put("page", pageweb);
-	    List lendList = this.lendDaoI.getLendByPage(parameterMap);
+	    List<LendPageDTOResult> lendList = this.lendDaoI.getLendByPage(parameterMap);
 	    pageweb.setRecords(lendList);
-	    PageWebDTOResult pageWebDTOResult = new PageWebDTOResult(pageweb.getPageSize(), pageweb.getPageNow(), pageweb.getRowCount(), pageweb.getPageCount(), lendList);
+	    PageWebDTOResult<LendPageDTOResult> pageWebDTOResult = new PageWebDTOResult<LendPageDTOResult>(pageweb.getPageSize(), pageweb.getPageNow(), pageweb.getRowCount(), pageweb.getPageCount(), lendList);
 	    return pageWebDTOResult;
 	  }
 

@@ -11,8 +11,23 @@ public class LendPageDTOResult
   private String lendSpecial;
   private String monthlyInterestRate;
   private Integer lendMoney;
+  private Integer lendPeriod;// 借款周期
 
-  public String getIdentifier()
+  /**
+ * @return the lendPeriod
+ */
+public Integer getLendPeriod() {
+	return lendPeriod;
+}
+
+/**
+ * @param lendPeriod the lendPeriod to set
+ */
+public void setLendPeriod(Integer lendPeriod) {
+	this.lendPeriod = lendPeriod;
+}
+
+public String getIdentifier()
   {
     return this.identifier;
   }
