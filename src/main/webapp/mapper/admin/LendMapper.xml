@@ -2,221 +2,242 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.borrow.supermarket.dao.LendDao">
- <sql id="baseSql">
-     id,
-	 identifier,
-	 lendName,
-	 lendPicUrl,
-	 lendUrl,
-	 platformNature,
-	 lendOnlineTime,
-	 creditStanding,
-	 hasCredit,
-	 lendMoney,
-	 lendPeriod,
-	 lendSpecial,
-	 monthlyInterestRate,
-	 loanTime,
-	 throughputRate,
-	 returnCycle,
-	 requirements,
-	 certificationMaterials,	
-	 applyForAdvice,
-	 overduePunishment,
-	 status,
-	 createDate,
-	 updateDate,
-	 hasActivity,
-	 totalApply
- </sql>
- 
- <sql id="baseSql2">
-	 identifier,
-	 lendName,
-	 lendPicUrl,
-	 platformNature,
-	 lendOnlineTime,
-	 creditStanding,
-	 hasCredit,
-	 lendMoney,
-	 lendPeriod,
-	 monthlyInterestRate
- </sql>
- 
- <select id="getInfo" parameterType="LendModel" resultType="LendModel">
-       select 
-       <include refid="baseSql"/>
-       from supermarket.lend  where identifier = #{identifier}
- </select>
- 
- <update id="updateApplyCount">
-       update supermarket.request set applyCount = applyCount + 1, updateTime = now() where flag = 99
- </update>
- 
- <select id="getLendDetailByIdentifier" parameterType="LendDetailRequestDTO" resultType="LendDetailDTOResult">
-       select 
-       <include refid="baseSql"/>,applyCount 
-       from supermarket.lend, supermarket.request where identifier = #{identifier}
- </select>
- 
- 
-	 <select id="getByPage" parameterType="Map" resultType="LendModel">
-     select 
-     <include refid="baseSql"/>
-       from supermarket.lend 
-       <where>
-          1 = 1
-         <if test="t.lendName != null and t.lendName != '' ">
-          and lendName = #{t.lendName}
-         </if>
-         <if test="t.platformNature != null and t.platformNature != 0 ">
-          and platformNature = #{t.platformNature}
-         </if>
-         <if test="t.lendMoney != null and t.lendMoney != 0 ">
-          and lendMoney = #{t.lendMoney}
-         </if>
-       </where>
-   </select>
-	
-	<insert id="save" parameterType="LendModel">
-	   insert into supermarket.lend
-	   (
-	   		 identifier,
-			 lendName,
-			 lendPicUrl,
-			 lendUrl,
-			 platformNature,
-			 lendOnlineTime,
-			 creditStanding,
-			 hasCredit,
-			 lendMoney,
-			 lendPeriod,
-			 lendSpecial,
-			 monthlyInterestRate,
-			 loanTime,
-			 throughputRate,
-			 returnCycle,
-			 requirements,
-			 certificationMaterials,	
-			 applyForAdvice,
-			 overduePunishment,
-			 status,
-			 createDate,
-			 updateDate,
-			 hasActivity,
-			 lendMoneyBegin,
-			 lendMoneyEnd,
-			 lendSpecialBegin,
-			 lendSpecialEnd
-	   ) values(
-	        #{identifier},
-			#{lendName},
-			#{lendPicUrl},
-			#{lendUrl},
-			#{platformNature},
-			#{lendOnlineTime},
-			#{creditStanding},
-			#{hasCredit},
-			#{lendMoney},
-			#{lendPeriod},
-			#{lendSpecial},
-			#{monthlyInterestRate},
-			#{loanTime},
-			#{throughputRate},
-			#{returnCycle},
-			#{requirements},
-			#{certificationMaterials},	
-			#{applyForAdvice},
-			#{overduePunishment},
-			 1,
-			 NOW(),
-			 NOW(),
-			#{hasActivity},
-			#{lendMoneyBegin},
-			#{lendMoneyEnd},
-			#{lendSpecialBegin},
-			#{lendSpecialEnd}
-	   )
-	</insert>
-	
-	<update id="update" parameterType="LendModel">
-	 update supermarket.lend 
-	 set
-			 lendName = #{lendName},
-			 lendPicUrl = #{lendPicUrl},
-			 lendUrl = #{lendUrl},
-			 platformNature = #{platformNature},
-			 lendOnlineTime = #{lendOnlineTime},
-			 creditStanding = #{creditStanding},
-			 hasCredit = #{hasCredit},
-			 lendMoney = #{lendMoney},
-			 lendPeriod = #{lendPeriod},
-			 lendSpecial = #{lendSpecial},
-			 monthlyInterestRate = #{monthlyInterestRate},
-			 loanTime = #{loanTime},
-			 throughputRate = #{throughputRate},
-			 returnCycle = #{returnCycle},
-			 requirements = #{requirements},
-			 certificationMaterials = #{certificationMaterials},	
-			 applyForAdvice = #{applyForAdvice},
-			 overduePunishment = #{overduePunishment},
-			 updateDate = NOW(),
-			 hasActivity = #{hasActivity},
-			 lendMoneyBegin = #{lendMoneyBegin},
-			 lendMoneyEnd = #{lendMoneyEnd},
-			 lendSpecialBegin = #{lendSpecialBegin},
-			 lendSpecialEnd = #{lendSpecialEnd}
-	        where identifier = #{identifier}
+	<sql id="baseSql">
+		id,
+		identifier,
+		lendName,
+		lendPicUrl,
+		lendUrl,
+		platformNature,
+		lendOnlineTime,
+		creditStanding,
+		hasCredit,
+		lendMoney,
+		lendPeriod,
+		lendSpecial,
+		monthlyInterestRate,
+		loanTime,
+		throughputRate,
+		returnCycle,
+		requirements,
+		certificationMaterials,
+		applyForAdvice,
+		overduePunishment,
+		status,
+		createDate,
+		updateDate,
+		hasActivity,
+		totalApply
+	</sql>
+
+	<sql id="baseSql2">
+		identifier,
+		lendName,
+		lendPicUrl,
+		platformNature,
+		lendOnlineTime,
+		creditStanding,
+		hasCredit,
+		lendMoney,
+		lendPeriod,
+		lendSpecial,
+		monthlyInterestRate
+	</sql>
+
+	<select id="getInfo" parameterType="LendModel" resultType="LendModel">
+		select
+		<include refid="baseSql" />
+		from supermarket.lend where identifier = #{identifier}
+	</select>
+
+	<update id="updateApplyCount">
+		update supermarket.request set applyCount = applyCount + 1, updateTime =
+		now() where flag = 99
 	</update>
- 
- 
- <update id="updateLendStatus" parameterType="LendModel">
-   update supermarket.lend set status = #{status} where identifier = #{identifier}
- </update>
- 
- 
- <select id="getLendByPage" parameterType="Map" resultType="LendPageDTOResult">
-   select 
-   <include refid="baseSql2"/>
-   from supermarket.lend 
-   <where>
-       status = 2
-      <if test="t.lendMoney != null">
-        and lendMoney = #{t.lendMoney}
-      </if>
-      <if test="t.lendPerid != null">
-        and lendPerid = #{t.lendPerid}
-      </if>
-      <if test="t.monthlyInterestRate != null">
-        and monthlyInterestRate = #{t.monthlyInterestRate}
-      </if>
-      <if test="t.onlineTime != null">
-        and onlineTime = #{t.onlineTime}
-      </if>
-      <if test="t.creditStanding != null">
-        and creditStanding = #{t.creditStanding}
-      </if>
-      <if test="t.hasCredit != null">
-        and hasCredit = #{t.hasCredit}
-      </if>
-      <if test="t.lendTotalMoney != null ">
-       and lendMoneyBegin &gt;= #{t.lendTotalMoney}
-      </if>
-      <if test="t.lendTotalPerid != null ">
-       and lendSpecialBegin &gt;= #{t.lendTotalPerid}
-      </if>
-   </where>
-   order by
-    <if test="t.throughputRate != null and t.throughputRate == 0">
-    throughputRate desc,
-    </if>
-    <if test="t.throughputRate != null and t.throughputRate == 1">
-    throughputRate asc,
-    </if>
-    id desc
-  </select>
-  
-  <update id="updatetotalApply" parameterType="Integer">
-   update supermarket.lend set totalApply = totalApply + 1 where id = #{id}
-  </update>
+
+	<select id="getLendDetailByIdentifier" parameterType="LendDetailRequestDTO"
+		resultType="LendDetailDTOResult">
+		select
+		<include refid="baseSql" />
+		,applyCount
+		from supermarket.lend, supermarket.request where identifier =
+		#{identifier}
+	</select>
+
+
+	<select id="getByPage" parameterType="Map" resultType="LendModel">
+		select
+		<include refid="baseSql" />
+		from supermarket.lend
+		<where>
+			1 = 1
+			<if test="t.lendName != null and t.lendName != '' ">
+				and lendName = #{t.lendName}
+			</if>
+			<if test="t.platformNature != null and t.platformNature != 0 ">
+				and platformNature = #{t.platformNature}
+			</if>
+			<if test="t.lendMoney != null and t.lendMoney != 0 ">
+				and lendMoney = #{t.lendMoney}
+			</if>
+		</where>
+	</select>
+
+	<insert id="save" parameterType="LendModel">
+		insert into supermarket.lend
+		(
+		identifier,
+		lendName,
+		lendPicUrl,
+		lendUrl,
+		platformNature,
+		lendOnlineTime,
+		creditStanding,
+		hasCredit,
+		lendMoney,
+		lendPeriod,
+		lendSpecial,
+		monthlyInterestRate,
+		loanTime,
+		throughputRate,
+		returnCycle,
+		requirements,
+		certificationMaterials,
+		applyForAdvice,
+		overduePunishment,
+		status,
+		createDate,
+		updateDate,
+		hasActivity,
+		lendMoneyBegin,
+		lendMoneyEnd,
+		lendSpecialBegin,
+		lendSpecialEnd
+		) values(
+		#{identifier},
+		#{lendName},
+		#{lendPicUrl},
+		#{lendUrl},
+		#{platformNature},
+		#{lendOnlineTime},
+		#{creditStanding},
+		#{hasCredit},
+		#{lendMoney},
+		#{lendPeriod},
+		#{lendSpecial},
+		#{monthlyInterestRate},
+		#{loanTime},
+		#{throughputRate},
+		#{returnCycle},
+		#{requirements},
+		#{certificationMaterials},
+		#{applyForAdvice},
+		#{overduePunishment},
+		1,
+		NOW(),
+		NOW(),
+		#{hasActivity},
+		#{lendMoneyBegin},
+		#{lendMoneyEnd},
+		#{lendSpecialBegin},
+		#{lendSpecialEnd}
+		)
+	</insert>
+
+	<update id="update" parameterType="LendModel">
+		update supermarket.lend
+		set
+		lendName = #{lendName},
+		lendPicUrl = #{lendPicUrl},
+		lendUrl = #{lendUrl},
+		platformNature = #{platformNature},
+		lendOnlineTime = #{lendOnlineTime},
+		creditStanding = #{creditStanding},
+		hasCredit = #{hasCredit},
+		lendMoney = #{lendMoney},
+		lendPeriod = #{lendPeriod},
+		lendSpecial = #{lendSpecial},
+		monthlyInterestRate = #{monthlyInterestRate},
+		loanTime = #{loanTime},
+		throughputRate = #{throughputRate},
+		returnCycle = #{returnCycle},
+		requirements = #{requirements},
+		certificationMaterials = #{certificationMaterials},
+		applyForAdvice = #{applyForAdvice},
+		overduePunishment = #{overduePunishment},
+		updateDate = NOW(),
+		hasActivity = #{hasActivity},
+		lendMoneyBegin = #{lendMoneyBegin},
+		lendMoneyEnd = #{lendMoneyEnd},
+		lendSpecialBegin = #{lendSpecialBegin},
+		lendSpecialEnd = #{lendSpecialEnd}
+		where identifier = #{identifier}
+	</update>
+
+
+	<update id="updateLendStatus" parameterType="LendModel">
+		update supermarket.lend set status = #{status} where identifier =
+		#{identifier}
+	</update>
+
+
+	<select id="getLendByPage" parameterType="Map" resultType="LendPageDTOResult">
+		select
+		<include refid="baseSql2" />
+		from supermarket.lend
+		<where>
+			status = 2
+			<if test="t.lendMoney != null">
+				and lendMoney = #{t.lendMoney}
+			</if>
+			<if test="t.lendPeriod != null">
+				and lendPeriod = #{t.lendPeriod}
+			</if>
+			<if test="t.lendOnlineTime != null">
+				and lendOnlineTime = #{t.lendOnlineTime}
+			</if>
+			<if test="t.creditStanding != null">
+				and creditStanding = #{t.creditStanding}
+			</if>
+			<if test="t.hasCredit != null">
+				and hasCredit = #{t.hasCredit}
+			</if>
+			<if test="t.lendTotalMoney != null ">
+				and lendMoneyBegin &gt;= #{t.lendTotalMoney}
+			</if>
+			<if test="t.lendTotalPerid != null ">
+				and lendSpecialBegin &gt;= #{t.lendTotalPerid}
+			</if>
+		</where>
+		order by
+		<if test="t.lendMoneySort != null and t.lendMoneySort == 0">
+			lendMoney desc,
+		</if>
+		<if test="t.lendMoneySort != null and t.lendMoneySort == 1">
+			lendMoney asc,
+		</if>
+		<if test="t.lendPeriodSort != null and t.lendPeriodSort == 0">
+			lendPeriod desc,
+		</if>
+		<if test="t.lendPeriodSort != null and t.lendPeriodSort == 1">
+			lendPeriod asc,
+		</if>
+		<if test="t.monthlyInterestRate != null and t.monthlyInterestRate == 0">
+			monthlyInterestRate desc,
+		</if>
+		<if test="t.monthlyInterestRate != null and t.monthlyInterestRate == 1">
+			monthlyInterestRate asc,
+		</if>
+		<if test="t.throughputRate != null and t.throughputRate == 0">
+			throughputRate desc,
+		</if>
+		<if test="t.throughputRate != null and t.throughputRate == 1">
+			throughputRate asc,
+		</if>
+		id desc
+	</select>
+
+	<update id="updatetotalApply" parameterType="Integer">
+		update supermarket.lend set totalApply = totalApply + 1 where id = #{id}
+	</update>
 </mapper>
