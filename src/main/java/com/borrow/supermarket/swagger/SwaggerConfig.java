@@ -35,8 +35,8 @@ public class SwaggerConfig {
   
     private ApiInfo apiInfo() {  
         ApiInfo apiInfo = new ApiInfo(  
-                "采贝代超",  
-                "采贝代超服务接口",  
+                "采贝贷超",  
+                "采贝贷超服务接口",  
                 "My Apps API terms of service",  
                 "My Apps API Contact Email",  
                 "My Apps API Licence Type",  
