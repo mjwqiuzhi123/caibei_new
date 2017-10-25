@@ -40,7 +40,7 @@ public class UserController extends BaseController
 
   @Autowired
   private VericodesService vericodesServiceImpl;
-
+  // App login
   @RequestMapping(value={"/login.json"}, method={org.springframework.web.bind.annotation.RequestMethod.POST}, produces={"application/json; charset=utf-8"})
   public ResponseEntity userLogin(HttpServletRequest request, HttpServletResponse response, @Valid UserLoginRequestDTO userLoginRequestDTO, BindingResult bind)
   {
