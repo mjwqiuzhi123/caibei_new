@@ -9,7 +9,7 @@ public class LendPageRequestDTO {
 	private Integer number;
 	private Integer lendMoney;
 	private Integer lendPeriod;
-	private Integer monthlyInterestRate;
+	private Integer monthlyInterestSort;
 	private Integer lendOnlineTime;
 	private Integer creditStanding;
 	private Integer hasCredit;
@@ -73,12 +73,12 @@ public class LendPageRequestDTO {
 		this.lendPeriod = lendPeriod;
 	}
 
-	public Integer getMonthlyInterestRate() {
-		return this.monthlyInterestRate;
+	public Integer getMonthlyInterestSort() {
+		return this.monthlyInterestSort;
 	}
 
-	public void setMonthlyInterestRate(Integer monthlyInterestRate) {
-		this.monthlyInterestRate = monthlyInterestRate;
+	public void setMonthlyInterestSort(Integer monthlyInterestSort) {
+		this.monthlyInterestSort = monthlyInterestSort;
 	}
 
 	public Integer getLendOnlineTime() {
@@ -129,11 +129,11 @@ public class LendPageRequestDTO {
 		this.throughputRate = throughputRate;
 	}
 
-	public LendPageRequestDTO(Integer number, Integer lendMoney, Integer lendPeriod, Integer monthlyInterestRate, Integer lendOnlineTime, Integer creditStanding, Integer hasCredit, BigDecimal lendTotalMoney, Integer lendTotalPerid, Integer throughputRate) {
+	public LendPageRequestDTO(Integer number, Integer lendMoney, Integer lendPeriod, Integer monthlyInterestSort, Integer lendOnlineTime, Integer creditStanding, Integer hasCredit, BigDecimal lendTotalMoney, Integer lendTotalPerid, Integer throughputRate) {
 		this.number = number;
 		this.lendMoney = lendMoney;
 		this.lendPeriod = lendPeriod;
-		this.monthlyInterestRate = monthlyInterestRate;
+		this.monthlyInterestSort = monthlyInterestSort;
 		this.lendOnlineTime = lendOnlineTime;
 		this.creditStanding = creditStanding;
 		this.hasCredit = hasCredit;

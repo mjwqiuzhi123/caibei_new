@@ -1,7 +1,5 @@
 package com.borrow.supermarket.controller;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -30,8 +28,6 @@ import com.borrow.supermarket.util.ServiceCode;
 @Controller
 public class LendController extends BaseController
 {
-	private static AtomicInteger ai = new AtomicInteger(1);
-
 	@Autowired
 	private LendService lendServiceI;
 
@@ -78,7 +74,6 @@ public class LendController extends BaseController
 			if (bind.hasErrors()) {
 				return getValidErrors(bind).getAsJSON();
 			}
-			this.lendServiceI.applyCount();
 			LendDetailDTOResult LendDetailDTOResult = this.lendServiceI.getLendDetailByIdentifier(lendDetailRequestDTO);
 			messageResult.addProperty(LendDetailDTOResult);
 			return messageResult.getAsJSON();

@@ -123,9 +123,16 @@ public class OrderService
 	      if (!flag) {
 	        throw new RuntimeException();
 	      }
+	      
+	      int dayTotalApply = this.lendServiceI.getDayTotalApply(lendModel.getId());
+	      if (dayTotalApply < 0) {
+	    	throw new RuntimeException();
+	      }
+	      
 	      GetsaveOrderDTOResponse saveOrder = new GetsaveOrderDTOResponse();
 	      saveOrder.setIdentifier(getsaveOrderRequestDTO.getIdentifier());
 	      saveOrder.setLendUrl(lendModel.getLendUrl());
+	      saveOrder.setDayTotalApply(dayTotalApply);
 	      responseEntity.addProperty(saveOrder);
 	      return responseEntity;
 	    } catch (Exception e) {

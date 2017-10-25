@@ -43,7 +43,16 @@ public class OrderController extends BaseController
       return messageResult;
     }
   }
-
+  
+  /**
+   * 保存用户的贷款申请订单
+   * @param request
+   * @param response
+   * @param model
+   * @param getsaveOrderRequestDTO
+   * @param bind
+   * @return
+   */
   @RequestMapping(value={"/lendApply.json"}, method={org.springframework.web.bind.annotation.RequestMethod.POST}, produces={"application/json; charset=utf-8"})
   public ResponseEntity saveUserOrder(HttpServletRequest request, HttpServletResponse response, ModelMap model, @Valid @ModelAttribute("saveUserOrder") GetsaveOrderRequestDTO getsaveOrderRequestDTO, BindingResult bind) {
     ResponseEntity re = new ResponseEntity();

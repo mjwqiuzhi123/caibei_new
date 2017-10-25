@@ -90,7 +90,7 @@ public class LendService
 	    return pageWebDTOResult;
 	  }
 
-	  public synchronized void applyCount()
+/*	  public synchronized void applyCount()
 	  {
 	    try {
 	      this.lendDaoI.updateApplyCount();
@@ -99,24 +99,34 @@ public class LendService
 	      logger.error("更新请求次数失败---原因是-----:" + e.getMessage());
 	    }
 	  }
-	  
-	  public LendDetailDTOResult getLendDetailByIdentifier(LendDetailRequestDTO lendDetailRequestDTO)
-	  {
-	    try {
-	      return this.lendDaoI.getLendDetailByIdentifier(lendDetailRequestDTO);
-	    } catch (Exception e) {
-	      e.printStackTrace();
-	      logger.error("第三方借贷平台查看详情操作异常---原因是-----:" + e.getMessage());
-	    }return null;
-	  }
+*/	  
+	public LendDetailDTOResult getLendDetailByIdentifier(LendDetailRequestDTO lendDetailRequestDTO) {
+		try {
+			return this.lendDaoI.getLendDetailByIdentifier(lendDetailRequestDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error("第三方借贷平台查看详情操作异常---原因是-----:" + e.getMessage());
+		}
+		return null;
+	}
 
-	  public boolean updatetotalApply(Integer id)
-	  {
-	    try {
-	      return this.lendDaoI.updatetotalApply(id).intValue() > 0;
-	    } catch (Exception e) {
-	      e.printStackTrace();
-	      logger.error("借贷平台总申请数修改操作异常---原因是-----:" + e.getMessage());
-	    }return false;
-	  }
+	public synchronized boolean updatetotalApply(Integer id) {
+		try {
+			return this.lendDaoI.updatetotalApply(id).intValue() > 0;
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error("借贷平台总申请数修改操作异常---原因是-----:" + e.getMessage());
+		}
+		return false;
+	}
+	  
+	public int getDayTotalApply(Integer id) {
+		try {
+			return this.lendDaoI.getDayTotalApply(id).intValue();
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error("借贷平台总申请数修改操作异常---原因是-----:" + e.getMessage());
+		}
+		return -1;
+	}
 }

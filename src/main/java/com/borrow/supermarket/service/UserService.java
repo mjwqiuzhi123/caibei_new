@@ -64,9 +64,7 @@ public class UserService
 	      {
 	        if (userModel.getLastfailedsignintime() != null)
 	        {
-	          if (DateUtil.GetDate(userModel
-	            .getLastfailedsignintime())
-	            .equals(DateUtil.GetDate(new Date())))
+	          if (DateUtil.GetDate(userModel.getLastfailedsignintime()).equals(DateUtil.GetDate(new Date())))
 	          {
 	            userModel.setLoginfailedcount(userModel.getLoginfailedcount() + 1); 
 	            //break label220; MJW
@@ -77,9 +75,7 @@ public class UserService
 	        label220: userModel.setLastfailedsignintime(new Date());
 	        this.userDaoI.updateByEntity(userModel);
 
-	        UserLoginDTOResult resultDTO = new UserLoginDTOResult(
-	          Integer.valueOf(5 - userModel
-	          .getLoginfailedcount()), true, false);
+	        UserLoginDTOResult resultDTO = new UserLoginDTOResult(Integer.valueOf(5 - userModel.getLoginfailedcount()), true, false);
 	        responseEntity.setMsg(ServiceCode.SING_IN_REPONSE_TWO);
 	        responseEntity.addProperty(resultDTO);
 	        return responseEntity;

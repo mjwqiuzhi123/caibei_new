@@ -6,13 +6,16 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ser.DefaultSerializerProvider;
 import com.fasterxml.jackson.databind.ser.DefaultSerializerProvider.Impl;
+
 import java.io.IOException;
 import java.io.PrintStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+
 import net.sf.json.JSONObject;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,7 +27,7 @@ public class ResponseEntity
 
 	protected String message = ServiceCode.SUCCESS.getText();
 
-	private List<Object> properties = new ArrayList();
+	private List<Object> properties = new ArrayList<Object>();
 
 	public String getResultCode() {
 		return this.resultCode;

@@ -17,6 +17,7 @@ public abstract interface LendDao extends BaseMapper<LendModel>
   public abstract LendDetailDTOResult getLendDetailByIdentifier(LendDetailRequestDTO paramLendDetailRequestDTO);
 
   public abstract Integer updatetotalApply(Integer paramInteger);
+  
+  public abstract Integer getDayTotalApply(Integer paramInteger);
 
-  public abstract int updateApplyCount();
 }

@@ -5,280 +5,277 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class LendModel
-  implements Serializable
-{
-  private Integer id;
-  private String identifier;
-  private String lendName;
-  private String lendPicUrl;
-  private String lendUrl;
-  private Integer platformNature;
-  private Integer lendOnlineTime;
-  private Integer creditStanding;
-  private Integer hasCredit;
-  private Integer lendMoney;
-  private Integer lendPeriod;
-  private String lendSpecial;
-  private String monthlyInterestRate;
-  private String loanTime;
-  private String throughputRate;
-  private Integer returnCycle;
-  private String requirements;
-  private String certificationMaterials;
-  private String applyForAdvice;
-  private String overduePunishment;
-  private Integer status;
-  private Date createDate;
-  private Date updateDate;
-  private int hasActivity;
-  private long totalApply;
-  private BigDecimal lendMoneyBegin;
-  private BigDecimal lendMoneyEnd;
-  private int lendSpecialBegin;
-  private int lendSpecialEnd;
-  private int applyCount;
-
-	public int getApplyCount() {
-		return applyCount;
-	}
-
-	public void setApplyCount(int applyCount) {
-		this.applyCount = applyCount;
-	}
+public class LendModel implements Serializable {
+	private Integer id;
+	private String identifier;
+	private String lendName;
+	private String lendPicUrl;
+	private String lendUrl;
+	private Integer platformNature;
+	private Integer lendOnlineTime;
+	private Integer creditStanding;
+	private Integer hasCredit;
+	private Integer lendMoney;
+	private Integer lendPeriod;
+	private String lendSpecial;
+	private String monthlyInterestRate;
+	private String loanTime;
+	private String throughputRate;
+	private Integer returnCycle;
+	private String requirements;
+	private String certificationMaterials;
+	private String applyForAdvice;
+	private String overduePunishment;
+	private Integer status;
+	private Date createDate;
+	private Date updateDate;
+	private int hasActivity;
+	private long dayTotalApply;
+	private long totalApply;
+	private BigDecimal lendMoneyBegin;
+	private BigDecimal lendMoneyEnd;
+	private int lendSpecialBegin;
+	private int lendSpecialEnd;
 
 	public BigDecimal getLendMoneyBegin() {
 		return this.lendMoneyBegin;
 	}
-	
-  public void setLendMoneyBegin(BigDecimal lendMoneyBegin) {
-    this.lendMoneyBegin = lendMoneyBegin;
-  }
 
-  public BigDecimal getLendMoneyEnd() {
-    return this.lendMoneyEnd;
-  }
+	public void setLendMoneyBegin(BigDecimal lendMoneyBegin) {
+		this.lendMoneyBegin = lendMoneyBegin;
+	}
 
-  public void setLendMoneyEnd(BigDecimal lendMoneyEnd) {
-    this.lendMoneyEnd = lendMoneyEnd;
-  }
+	public BigDecimal getLendMoneyEnd() {
+		return this.lendMoneyEnd;
+	}
 
-  public int getLendSpecialBegin() {
-    return this.lendSpecialBegin;
-  }
+	public void setLendMoneyEnd(BigDecimal lendMoneyEnd) {
+		this.lendMoneyEnd = lendMoneyEnd;
+	}
 
-  public void setLendSpecialBegin(int lendSpecialBegin) {
-    this.lendSpecialBegin = lendSpecialBegin;
-  }
+	public int getLendSpecialBegin() {
+		return this.lendSpecialBegin;
+	}
 
-  public int getLendSpecialEnd() {
-    return this.lendSpecialEnd;
-  }
+	public void setLendSpecialBegin(int lendSpecialBegin) {
+		this.lendSpecialBegin = lendSpecialBegin;
+	}
 
-  public void setLendSpecialEnd(int lendSpecialEnd) {
-    this.lendSpecialEnd = lendSpecialEnd;
-  }
+	public int getLendSpecialEnd() {
+		return this.lendSpecialEnd;
+	}
 
-  public Integer getId() {
-    return this.id;
-  }
+	public void setLendSpecialEnd(int lendSpecialEnd) {
+		this.lendSpecialEnd = lendSpecialEnd;
+	}
 
-  public void setId(Integer id) {
-    this.id = id;
-  }
+	public Integer getId() {
+		return this.id;
+	}
 
-  public String getIdentifier() {
-    return this.identifier;
-  }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-  public void setIdentifier(String identifier) {
-    this.identifier = identifier;
-  }
+	public String getIdentifier() {
+		return this.identifier;
+	}
 
-  public String getLendName() {
-    return this.lendName;
-  }
+	public void setIdentifier(String identifier) {
+		this.identifier = identifier;
+	}
 
-  public void setLendName(String lendName) {
-    this.lendName = lendName;
-  }
+	public String getLendName() {
+		return this.lendName;
+	}
 
-  public String getLendPicUrl() {
-    return this.lendPicUrl;
-  }
+	public void setLendName(String lendName) {
+		this.lendName = lendName;
+	}
 
-  public void setLendPicUrl(String lendPicUrl) {
-    this.lendPicUrl = lendPicUrl;
-  }
+	public String getLendPicUrl() {
+		return this.lendPicUrl;
+	}
 
-  public String getLendUrl() {
-    return this.lendUrl;
-  }
+	public void setLendPicUrl(String lendPicUrl) {
+		this.lendPicUrl = lendPicUrl;
+	}
 
-  public void setLendUrl(String lendUrl) {
-    this.lendUrl = lendUrl;
-  }
+	public String getLendUrl() {
+		return this.lendUrl;
+	}
 
-  public Integer getPlatformNature() {
-    return this.platformNature;
-  }
+	public void setLendUrl(String lendUrl) {
+		this.lendUrl = lendUrl;
+	}
 
-  public void setPlatformNature(Integer platformNature) {
-    this.platformNature = platformNature;
-  }
+	public Integer getPlatformNature() {
+		return this.platformNature;
+	}
 
-  public Integer getLendOnlineTime() {
-    return this.lendOnlineTime;
-  }
+	public void setPlatformNature(Integer platformNature) {
+		this.platformNature = platformNature;
+	}
 
-  public void setLendOnlineTime(Integer lendOnlineTime) {
-    this.lendOnlineTime = lendOnlineTime;
-  }
+	public Integer getLendOnlineTime() {
+		return this.lendOnlineTime;
+	}
 
-  public Integer getCreditStanding() {
-    return this.creditStanding;
-  }
+	public void setLendOnlineTime(Integer lendOnlineTime) {
+		this.lendOnlineTime = lendOnlineTime;
+	}
 
-  public void setCreditStanding(Integer creditStanding) {
-    this.creditStanding = creditStanding;
-  }
+	public Integer getCreditStanding() {
+		return this.creditStanding;
+	}
 
-  public Integer getHasCredit() {
-    return this.hasCredit;
-  }
+	public void setCreditStanding(Integer creditStanding) {
+		this.creditStanding = creditStanding;
+	}
 
-  public void setHasCredit(Integer hasCredit) {
-    this.hasCredit = hasCredit;
-  }
+	public Integer getHasCredit() {
+		return this.hasCredit;
+	}
 
-  public Integer getLendMoney() {
-    return this.lendMoney;
-  }
+	public void setHasCredit(Integer hasCredit) {
+		this.hasCredit = hasCredit;
+	}
 
-  public void setLendMoney(Integer lendMoney) {
-    this.lendMoney = lendMoney;
-  }
+	public Integer getLendMoney() {
+		return this.lendMoney;
+	}
 
-  public Integer getLendPeriod() {
-    return this.lendPeriod;
-  }
+	public void setLendMoney(Integer lendMoney) {
+		this.lendMoney = lendMoney;
+	}
 
-  public void setLendPeriod(Integer lendPeriod) {
-    this.lendPeriod = lendPeriod;
-  }
+	public Integer getLendPeriod() {
+		return this.lendPeriod;
+	}
 
-  public String getLendSpecial() {
-    return this.lendSpecial;
-  }
+	public void setLendPeriod(Integer lendPeriod) {
+		this.lendPeriod = lendPeriod;
+	}
 
-  public void setLendSpecial(String lendSpecial) {
-    this.lendSpecial = lendSpecial;
-  }
+	public String getLendSpecial() {
+		return this.lendSpecial;
+	}
 
-  public String getMonthlyInterestRate() {
-    return this.monthlyInterestRate;
-  }
+	public void setLendSpecial(String lendSpecial) {
+		this.lendSpecial = lendSpecial;
+	}
 
-  public void setMonthlyInterestRate(String monthlyInterestRate) {
-    this.monthlyInterestRate = monthlyInterestRate;
-  }
+	public String getMonthlyInterestRate() {
+		return this.monthlyInterestRate;
+	}
 
-  public String getLoanTime() {
-    return this.loanTime;
-  }
+	public void setMonthlyInterestRate(String monthlyInterestRate) {
+		this.monthlyInterestRate = monthlyInterestRate;
+	}
 
-  public void setLoanTime(String loanTime) {
-    this.loanTime = loanTime;
-  }
+	public String getLoanTime() {
+		return this.loanTime;
+	}
 
-  public String getThroughputRate() {
-    return this.throughputRate;
-  }
+	public void setLoanTime(String loanTime) {
+		this.loanTime = loanTime;
+	}
 
-  public void setThroughputRate(String throughputRate) {
-    this.throughputRate = throughputRate;
-  }
+	public String getThroughputRate() {
+		return this.throughputRate;
+	}
 
-  public Integer getReturnCycle() {
-    return this.returnCycle;
-  }
+	public void setThroughputRate(String throughputRate) {
+		this.throughputRate = throughputRate;
+	}
 
-  public void setReturnCycle(Integer returnCycle) {
-    this.returnCycle = returnCycle;
-  }
+	public Integer getReturnCycle() {
+		return this.returnCycle;
+	}
 
-  public String getRequirements() {
-    return this.requirements;
-  }
+	public void setReturnCycle(Integer returnCycle) {
+		this.returnCycle = returnCycle;
+	}
 
-  public void setRequirements(String requirements) {
-    this.requirements = requirements;
-  }
+	public String getRequirements() {
+		return this.requirements;
+	}
 
-  public String getCertificationMaterials() {
-    return this.certificationMaterials;
-  }
+	public void setRequirements(String requirements) {
+		this.requirements = requirements;
+	}
 
-  public void setCertificationMaterials(String certificationMaterials) {
-    this.certificationMaterials = certificationMaterials;
-  }
+	public String getCertificationMaterials() {
+		return this.certificationMaterials;
+	}
 
-  public String getApplyForAdvice() {
-    return this.applyForAdvice;
-  }
+	public void setCertificationMaterials(String certificationMaterials) {
+		this.certificationMaterials = certificationMaterials;
+	}
 
-  public void setApplyForAdvice(String applyForAdvice) {
-    this.applyForAdvice = applyForAdvice;
-  }
+	public String getApplyForAdvice() {
+		return this.applyForAdvice;
+	}
 
-  public String getOverduePunishment() {
-    return this.overduePunishment;
-  }
+	public void setApplyForAdvice(String applyForAdvice) {
+		this.applyForAdvice = applyForAdvice;
+	}
 
-  public void setOverduePunishment(String overduePunishment) {
-    this.overduePunishment = overduePunishment;
-  }
+	public String getOverduePunishment() {
+		return this.overduePunishment;
+	}
 
-  public Integer getStatus() {
-    return this.status;
-  }
+	public void setOverduePunishment(String overduePunishment) {
+		this.overduePunishment = overduePunishment;
+	}
 
-  public void setStatus(Integer status) {
-    this.status = status;
-  }
+	public Integer getStatus() {
+		return this.status;
+	}
 
-  public Date getCreateDate()
-  {
-    return this.createDate;
-  }
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
 
-  public void setCreateDate(Date createDate) {
-    this.createDate = createDate;
-  }
+	public Date getCreateDate() {
+		return this.createDate;
+	}
 
-  public Date getUpdateDate() {
-    return this.updateDate;
-  }
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
 
-  public void setUpdateDate(Date updateDate) {
-    this.updateDate = updateDate;
-  }
+	public Date getUpdateDate() {
+		return this.updateDate;
+	}
 
-  public int getHasActivity() {
-    return this.hasActivity;
-  }
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
 
-  public void setHasActivity(int hasActivity) {
-    this.hasActivity = hasActivity;
-  }
+	public int getHasActivity() {
+		return this.hasActivity;
+	}
 
-  public long getTotalApply() {
-    return this.totalApply;
-  }
+	public void setHasActivity(int hasActivity) {
+		this.hasActivity = hasActivity;
+	}
 
-  public void setTotalApply(long totalApply) {
-    this.totalApply = totalApply;
-  }
+	public long getTotalApply() {
+		return this.totalApply;
+	}
+
+	public void setTotalApply(long totalApply) {
+		this.totalApply = totalApply;
+	}
+
+	public long getDayTotalApply() {
+		return dayTotalApply;
+	}
+
+	public void setDayTotalApply(long dayTotalApply) {
+		this.dayTotalApply = dayTotalApply;
+	}
 
   public LendModel()
   {
@@ -376,4 +373,5 @@ public class LendModel
 
     return lendModel;
   }
+
 }

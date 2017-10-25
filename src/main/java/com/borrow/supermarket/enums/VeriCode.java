@@ -4,7 +4,7 @@ public class VeriCode
 {
   public static enum VeriCodeType
   {
-    SignUp, signiIn, ResetLoginPassword, ResetPaymentPassword, VeriImage;
+	  SignIn, SignUp, ResetLoginPassword, ResetPaymentPassword, VeriImage;
   }
   
   public static void main(String[] args) {
