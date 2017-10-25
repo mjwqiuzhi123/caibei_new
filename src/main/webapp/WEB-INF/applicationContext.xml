@@ -68,7 +68,7 @@
 		<constructor-arg index="0" ref="jedisPoolConfigUtil"/>
 		<constructor-arg index="1" value="${redis.host}"/>
 		<constructor-arg index="2" value="${redis.port}"/>
-        	<constructor-arg index="3" value="${redis.timeout}"/>
+        <constructor-arg index="3" value="${redis.timeout}"/>
 	</bean>
 	
 	<!-- swagger测试 :注入SpringSwaggerConfig-->  

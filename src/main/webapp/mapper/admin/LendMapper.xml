@@ -27,6 +27,7 @@
 		createDate,
 		updateDate,
 		hasActivity,
+		dayTotalApply,
 		totalApply
 	</sql>
 
@@ -50,17 +51,15 @@
 		from supermarket.lend where identifier = #{identifier}
 	</select>
 
-	<update id="updateApplyCount">
+<!-- 	<update id="updateApplyCount">
 		update supermarket.request set applyCount = applyCount + 1, updateTime =
 		now() where flag = 99
-	</update>
+	</update> -->
 
-	<select id="getLendDetailByIdentifier" parameterType="LendDetailRequestDTO"
-		resultType="LendDetailDTOResult">
+	<select id="getLendDetailByIdentifier" parameterType="LendDetailRequestDTO" resultType="LendDetailDTOResult">
 		select
 		<include refid="baseSql" />
-		,applyCount
-		from supermarket.lend, supermarket.request where identifier =
+		from supermarket.lend where identifier =
 		#{identifier}
 	</select>
 
@@ -222,22 +221,26 @@
 		<if test="t.lendPeriodSort != null and t.lendPeriodSort == 1">
 			lendPeriod asc,
 		</if>
-		<if test="t.monthlyInterestRate != null and t.monthlyInterestRate == 0">
+		<if test="t.monthlyInterestSort != null and t.monthlyInterestSort == 0">
 			monthlyInterestRate desc,
 		</if>
-		<if test="t.monthlyInterestRate != null and t.monthlyInterestRate == 1">
+		<if test="t.monthlyInterestSort != null and t.monthlyInterestSort == 1">
 			monthlyInterestRate asc,
 		</if>
-		<if test="t.throughputRate != null and t.throughputRate == 0">
+<!-- 		<if test="t.throughputRate != null and t.throughputRate == 0">
 			throughputRate desc,
 		</if>
 		<if test="t.throughputRate != null and t.throughputRate == 1">
 			throughputRate asc,
-		</if>
+		</if> -->
 		id desc
 	</select>
 
 	<update id="updatetotalApply" parameterType="Integer">
-		update supermarket.lend set totalApply = totalApply + 1 where id = #{id}
+		update supermarket.lend set totalApply = totalApply + 1, dayTotalApply = dayTotalApply + 1 where id = #{id}
 	</update>
+
+	<select id="getDayTotalApply" parameterType="Integer" resultType="Integer">
+		select dayTotalApply from supermarket.lend where id = #{id}
+	</select>
 </mapper>
