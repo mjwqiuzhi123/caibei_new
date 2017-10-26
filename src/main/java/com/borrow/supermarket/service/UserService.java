@@ -34,7 +34,8 @@ public class UserService
 	  @Autowired
 	  private UserDao userDaoI;
 
-	  public ResponseEntity searchUserByNameAndPwd(UserLoginRequestDTO userLoginRequestDTO, StringBuilder userIdentifier, StringBuilder cellphone) { ResponseEntity responseEntity = new ResponseEntity();
+	  public ResponseEntity searchUserByNameAndPwd(UserLoginRequestDTO userLoginRequestDTO, StringBuilder userIdentifier, StringBuilder cellphone) { 
+		ResponseEntity responseEntity = new ResponseEntity();
 	    try {
 	      UserModel userModel = this.userDaoI.searcUserByPhone(new UserModel(userLoginRequestDTO));
 
@@ -47,10 +48,7 @@ public class UserService
 
 	      if (userModel.getLastfailedsignintime() != null)
 	      {
-	        if ((DateUtil.GetDate(userModel
-	          .getLastfailedsignintime())
-	          .equals(DateUtil.GetDate(new Date()))) && 
-	          (userModel.getLoginfailedcount() >= 4)) {
+	        if ((DateUtil.GetDate(userModel.getLastfailedsignintime()).equals(DateUtil.GetDate(new Date()))) && (userModel.getLoginfailedcount() >= 4)) {
 	          UserLoginDTOResult resultDTO = new UserLoginDTOResult(Integer.valueOf(0), true, true);
 	          responseEntity.setMsg(ServiceCode.SING_IN_REPONSE_THREE);
 	          responseEntity.addProperty(resultDTO);
@@ -69,10 +67,12 @@ public class UserService
 	            userModel.setLoginfailedcount(userModel.getLoginfailedcount() + 1); 
 	            //break label220; MJW
 	          }
+	          else{
+	        	  userModel.setLoginfailedcount(1);  
+	          }
 	        }
-	        userModel.setLoginfailedcount(1);
-
-	        label220: userModel.setLastfailedsignintime(new Date());
+	        //label220: userModel.setLastfailedsignintime(new Date());
+	        userModel.setLastfailedsignintime(new Date());
 	        this.userDaoI.updateByEntity(userModel);
 
 	        UserLoginDTOResult resultDTO = new UserLoginDTOResult(Integer.valueOf(5 - userModel.getLoginfailedcount()), true, false);
