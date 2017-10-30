@@ -22,7 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @RequestMapping({"/admin/lend"})
 @Controller
-@Api(value = "/admin/lend", hidden = true)
+//@Api(value = "/admin/lend", hidden = true)
 public class AdminLendController
 {
 

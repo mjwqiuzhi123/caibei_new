@@ -14,7 +14,7 @@ public abstract interface BaseMapper<T>
   public abstract T getInfo(T paramT);
 
   public abstract List<T> getByPage(Map<String, Object> paramMap);
-
+  
   public abstract List<T> getAll();
 
   public abstract List<T> getAll(T paramT);

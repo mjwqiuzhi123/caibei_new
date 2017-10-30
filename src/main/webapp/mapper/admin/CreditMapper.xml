@@ -30,6 +30,15 @@
          </if>
        </where>
    </select>
+   
+	<!-- add by mjw 首页信息 -->
+	<select id="getHomeMessageByPage" parameterType="Map" resultType="String">
+		select context from supermarket.homeMessage
+	</select>
+
+	<insert id="saveHomeMessage" parameterType="String">
+		insert into supermarket.homeMessage (context) values (#{parpm})
+	</insert>
 	
 	<insert id="save" parameterType="CreditModel">
 	   insert into supermarket.cridit

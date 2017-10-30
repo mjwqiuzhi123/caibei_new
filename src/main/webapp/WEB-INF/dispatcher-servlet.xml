@@ -34,31 +34,32 @@
          <property name="maxUploadSize" value="10240000" />
      </bean>
        <!--  校验cookie有效期 【有cookie就进行解密重新包装user没有就放行】-->
-      <mvc:interceptors>
-        <mvc:interceptor>
-	        <mvc:mapping path="/front/order/**"/>
-	        <mvc:exclude-mapping path="/front/order/newOrderInfo.json"/>
-	        <bean class="com.borrow.supermarket.intercept.CheckCookieInterceptor"/>
-        </mvc:interceptor>
-       <mvc:interceptor>
-        <mvc:mapping path="/front/**"/>
-        <bean class="com.borrow.supermarket.intercept.CurrentUserCookieInterceptor"/>
-       </mvc:interceptor>
-       <mvc:interceptor>
-        <mvc:mapping path="/test/**"/>
-        <bean class="com.borrow.supermarket.intercept.TestInterceptor"/>
-       </mvc:interceptor>
-        <mvc:interceptor>
-	        <mvc:mapping path="/cbdc/**"/>
-	        <mvc:mapping path="/admin/users/**"/>
-	        <mvc:mapping path="cbdc/main.json"/>
-	        <mvc:mapping path="/admin/credit/**"/>
-	        <mvc:mapping path="/admin/lend/**"/>
-	        <mvc:mapping path="/admin/order/**"/>
-	        <mvc:mapping path="/admin/safe/**"/>
-	        <mvc:exclude-mapping path="/cbdc/login.json"/>
-	        <mvc:exclude-mapping path="/cbdc/loginOn.json"/>
-	        <bean class="com.borrow.supermarket.intercept.AdminSessionInterceptor"/>
-        </mvc:interceptor>
-     </mvc:interceptors>
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/front/order/**" />
+			<mvc:exclude-mapping path="/front/order/newOrderInfo.json" />
+			<bean class="com.borrow.supermarket.intercept.CheckCookieInterceptor" />
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/front/**" />
+			<bean class="com.borrow.supermarket.intercept.CurrentUserCookieInterceptor" />
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/test/**" />
+			<bean class="com.borrow.supermarket.intercept.TestInterceptor" />
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/cbdc/**" />
+			<mvc:mapping path="/admin/users/**" />
+			<mvc:mapping path="cbdc/main.json" />
+			<mvc:mapping path="/admin/credit/**" />
+			<mvc:mapping path="/admin/lend/**" />
+			<mvc:mapping path="/admin/order/**" />
+			<mvc:mapping path="/admin/safe/**" />
+			<mvc:mapping path="/admin/home/**" />
+			<mvc:exclude-mapping path="/cbdc/login.json" />
+			<mvc:exclude-mapping path="/cbdc/loginOn.json" />
+			<bean class="com.borrow.supermarket.intercept.AdminSessionInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
 </beans>

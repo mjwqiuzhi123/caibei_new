@@ -31,6 +31,17 @@ public class CreditService
       logger.error("第三方信用卡平台录入保存操作异常---原因是-----:" + e.getMessage());
     }return false;
   }
+  
+  // add bu mjw 添加首页信息
+	public boolean saveHomeMessage(String homeMessage) {
+		try {
+			return this.creditDaoI.saveHomeMessage(homeMessage).intValue() > 0;
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error("第三方信用卡平台录入保存操作异常---原因是-----:" + e.getMessage());
+		}
+		return false;
+	}
 
   public boolean updateCredit(CreditModel creditModel)
   {
@@ -69,6 +80,20 @@ public class CreditService
       map.put("t", creditModel);
       map.put("page", parameter);
       return this.creditDaoI.getByPage(map);
+    }
+    catch (Exception e) {
+      e.printStackTrace();
+      logger.error("第三方信用卡平台列表展示操作异常---原因是-----:" + e.getMessage());
+    }return null;
+  }
+  
+  //首页信息
+  public List<String> selectHomeMessageList(PageParameter parameter)
+  {
+    try {
+      Map map = new HashMap();
+      map.put("page", parameter);
+      return this.creditDaoI.getHomeMessageByPage(map);
     }
     catch (Exception e) {
       e.printStackTrace();

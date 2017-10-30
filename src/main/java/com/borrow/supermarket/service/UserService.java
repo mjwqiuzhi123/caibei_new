@@ -46,6 +46,7 @@ public class UserService
 	        return responseEntity;
 	      }
 
+	      // 每天登陆失败不超过5次
 	      if (userModel.getLastfailedsignintime() != null)
 	      {
 	        if ((DateUtil.GetDate(userModel.getLastfailedsignintime()).equals(DateUtil.GetDate(new Date()))) && (userModel.getLoginfailedcount() >= 4)) {
@@ -56,7 +57,7 @@ public class UserService
 	        }
 
 	      }
-
+	      
 	      String encryptPassword = PasswordHash.createHash(userLoginRequestDTO.getPassword(), userModel.getSalt());
 	      if (!userModel.getPassword().equals(encryptPassword))
 	      {
