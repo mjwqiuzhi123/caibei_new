@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +31,7 @@ import com.borrow.supermarket.util.PageWebDTOResult;
 import com.borrow.supermarket.util.ResponseEntity;
 import com.borrow.supermarket.util.ServiceCode;
 import com.fasterxml.jackson.core.JsonParser.Feature;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
@@ -172,6 +176,7 @@ public class OrderService
 	    String homeMessage = this.orderDaoI.getHomeMessage();
 	    ObjectMapper om = new ObjectMapper();
 	    om.configure(Feature.ALLOW_UNQUOTED_CONTROL_CHARS, true);// 转义字符-异常情况
+	    om.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);// 
 	    List<HomeMessDisDTO<ProductDTO>> homeMessDisDTO = new ArrayList<HomeMessDisDTO<ProductDTO>>();
 	    HomeMessDisDTO<ProductDTO>[] jsonArray = null;
 	    PageWebDTOResult<HomeMessDisDTO<ProductDTO>> pageWebDTOResult = new PageWebDTOResult<HomeMessDisDTO<ProductDTO>>(pageweb.getPageSize(), pageweb.getPageNow(), pageweb.getRowCount(), pageweb.getPageCount(), homeMessDisDTO);
@@ -187,4 +192,32 @@ public class OrderService
 		}
 	    return pageWebDTOResult;
 	  }
+	  
+	  // 获取首页数据(使用JSONObject)
+	public PageWebDTOResult<T> getHomeMessage1() {
+		PageParameter pageweb = new PageParameter();
+		String homeMessage = this.orderDaoI.getHomeMessage();
+		JSONObject jb = null;
+		JSONArray ja = null;
+		List<T> homeMessDisDTO = new ArrayList<HomeMessDisDTO<ProductDTO>>();
+		PageWebDTOResult<HomeMessDisDTO<ProductDTO>> pageWebDTOResult = new PageWebDTOResult<HomeMessDisDTO<ProductDTO>>(pageweb.getPageSize(), pageweb.getPageNow(), pageweb.getRowCount(), pageweb.getPageCount(), homeMessDisDTO);
+		if ((homeMessage != null) && (homeMessage.charAt(0) == '[')) {
+			ja = JSONArray.fromObject(homeMessage);
+		} else {
+			jb = JSONObject.fromObject(homeMessage);
+		}
+		HomeMessDisDTO<ProductDTO>[] jsonArray = null;
+		try {
+			jsonArray = om.readValue(homeMessage, HomeMessDisDTO[].class);
+			for (HomeMessDisDTO<ProductDTO> homeMess : jsonArray) {
+				homeMessDisDTO.add(homeMess);
+			}
+			pageWebDTOResult.setListData(homeMessDisDTO);
+		} catch (IOException e) {
+			pageWebDTOResult.setMsg(ServiceCode.EXCEPTION);
+			e.printStackTrace();
+		}
+		return pageWebDTOResult;
+
+	}
 }
