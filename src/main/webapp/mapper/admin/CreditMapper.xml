@@ -37,11 +37,11 @@
 	</select>
 
 	<insert id="saveHomeMessage" parameterType="String">
-		insert into supermarket.homeMessage (context) values (#{homeMessage})
+		insert into supermarket.message (context) values (#{homeMessage})
 	</insert>
 
 	<update id="updateHomeMessage" parameterType="String">
-		update supermarket.homeMessage set context = #{homeMessage} where type = 1
+		update supermarket.message set context = #{homeMessage} where type = 1
 	</update>
 
 	<select id="messageCount" resultType="Integer">

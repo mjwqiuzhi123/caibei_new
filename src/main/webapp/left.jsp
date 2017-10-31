@@ -53,6 +53,7 @@ $(function(){
 		        <li><cite></cite><a href="${pageContext.request.contextPath}/admin/lend/lendManager.json" target="rightFrame">借贷管理</a><i></i></li>
 		        <li><cite></cite><a href="${pageContext.request.contextPath}/admin/credit/creditManager.json" target="rightFrame">信用卡管理</a><i></i></li>
 		        <li><cite></cite><a href="${pageContext.request.contextPath}/admin/home/homeMessageManager.json" target="rightFrame">首页信息管理</a><i></i></li>
+		        <%-- <li><cite></cite><a href="${pageContext.request.contextPath}/admin/home/homeMessageManager.json" target="rightFrame">发现页面管理</a><i></i></li> --%>
 		    </ul>
     	 </dd>
         <!-- 第三方录入【结束】 -->
