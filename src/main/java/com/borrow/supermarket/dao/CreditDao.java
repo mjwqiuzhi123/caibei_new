@@ -13,7 +13,11 @@ public abstract interface CreditDao extends BaseMapper<CreditModel>
 
   public abstract List<CreditPageResultDTO> getCreditByPage(Map<String, Object> paramMap);
   
-  public abstract Integer saveHomeMessage(String param);// add by mjw 添加首页信息
+  public abstract Integer saveHomeMessage(String homeMessage);// add by mjw 添加首页信息
+  
+  public abstract Integer updateHomeMessage(String homeMessage);// add by mjw 更新首页信息
+  
+  public abstract Integer messageCount();// add by mjw 获取首页信息数量
   
   public abstract List<String> getHomeMessageByPage(Map<String, Object> paramMap);// add by mjw 获取全部首页信息
 }

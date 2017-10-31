@@ -33,12 +33,20 @@
    
 	<!-- add by mjw 首页信息 -->
 	<select id="getHomeMessageByPage" parameterType="Map" resultType="String">
-		select context from supermarket.homeMessage
+		select context from supermarket.message where type = 1
 	</select>
 
 	<insert id="saveHomeMessage" parameterType="String">
-		insert into supermarket.homeMessage (context) values (#{parpm})
+		insert into supermarket.homeMessage (context) values (#{homeMessage})
 	</insert>
+
+	<update id="updateHomeMessage" parameterType="String">
+		update supermarket.homeMessage set context = #{homeMessage} where type = 1
+	</update>
+
+	<select id="messageCount" resultType="Integer">
+		select count(1) from supermarket.message where type = 1
+	</select>
 	
 	<insert id="save" parameterType="CreditModel">
 	   insert into supermarket.cridit

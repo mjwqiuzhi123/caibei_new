@@ -35,6 +35,8 @@ public class CreditService
   // add bu mjw 添加首页信息
 	public boolean saveHomeMessage(String homeMessage) {
 		try {
+			if(this.creditDaoI.messageCount().intValue() > 0)
+				return this.creditDaoI.updateHomeMessage(homeMessage).intValue() > 0;
 			return this.creditDaoI.saveHomeMessage(homeMessage).intValue() > 0;
 		} catch (Exception e) {
 			e.printStackTrace();

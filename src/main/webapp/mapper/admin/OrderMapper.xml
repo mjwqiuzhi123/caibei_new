@@ -54,6 +54,10 @@
        from supermarket.order o inner join supermarket.user u on o.userId = u.id inner join supermarket.lend l on o.productId = l.id
       where o.id = #{id}
    </select>
+
+	<select id="getHomeMessage"  resultType="String">
+		select context from supermarket.message where type = 1
+	</select>
    
    <update id="updateOrderStatus" parameterType="OrderModel">
    

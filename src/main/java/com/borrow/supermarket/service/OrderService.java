@@ -1,5 +1,17 @@
 package com.borrow.supermarket.service;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.borrow.supermarket.dao.OrderDao;
 import com.borrow.supermarket.model.LendModel;
 import com.borrow.supermarket.model.OrderModel;
@@ -7,18 +19,16 @@ import com.borrow.supermarket.model.UserModel;
 import com.borrow.supermarket.mybatis.PageParameter;
 import com.borrow.supermarket.request.dto.GetNewOrderRequestDTO;
 import com.borrow.supermarket.request.dto.GetsaveOrderRequestDTO;
+import com.borrow.supermarket.request.dto.HomeMessDisDTO;
+import com.borrow.supermarket.request.dto.ProductDTO;
 import com.borrow.supermarket.response.result.GetUserOrdersResultDTO;
 import com.borrow.supermarket.response.result.GetsaveOrderDTOResponse;
+import com.borrow.supermarket.response.result.LendPageDTOResult;
+import com.borrow.supermarket.util.PageWebDTOResult;
 import com.borrow.supermarket.util.ResponseEntity;
 import com.borrow.supermarket.util.ServiceCode;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import com.fasterxml.jackson.core.JsonParser.Feature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
 public class OrderService
@@ -152,5 +162,29 @@ public class OrderService
 	    } catch (Exception e) {
 	      logger.error("获取最新订单信息操作异常---原因是-----:" + e.getMessage());
 	    }return null;
+	  }
+	  
+	  // add by mjw 首页信息
+	  @SuppressWarnings("unchecked")
+	public PageWebDTOResult<HomeMessDisDTO<ProductDTO>> getHomeMessage()
+	  {
+	    PageParameter pageweb = new PageParameter();
+	    String homeMessage = this.orderDaoI.getHomeMessage();
+	    ObjectMapper om = new ObjectMapper();
+	    om.configure(Feature.ALLOW_UNQUOTED_CONTROL_CHARS, true);// 转义字符-异常情况
+	    List<HomeMessDisDTO<ProductDTO>> homeMessDisDTO = new ArrayList<HomeMessDisDTO<ProductDTO>>();
+	    HomeMessDisDTO<ProductDTO>[] jsonArray = null;
+	    PageWebDTOResult<HomeMessDisDTO<ProductDTO>> pageWebDTOResult = new PageWebDTOResult<HomeMessDisDTO<ProductDTO>>(pageweb.getPageSize(), pageweb.getPageNow(), pageweb.getRowCount(), pageweb.getPageCount(), homeMessDisDTO);
+		try {
+			jsonArray = om.readValue(homeMessage, HomeMessDisDTO[].class);
+			for(HomeMessDisDTO<ProductDTO> homeMess: jsonArray){
+				homeMessDisDTO.add(homeMess);
+			}
+			pageWebDTOResult.setListData(homeMessDisDTO);
+		} catch (IOException e) {
+			pageWebDTOResult.setMsg(ServiceCode.EXCEPTION);
+			e.printStackTrace();
+		}
+	    return pageWebDTOResult;
 	  }
 }

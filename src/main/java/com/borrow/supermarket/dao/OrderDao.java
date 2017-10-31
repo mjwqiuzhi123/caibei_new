@@ -17,4 +17,6 @@ public abstract interface OrderDao extends BaseMapper<OrderModel>
   public abstract GetNewOrderRequestDTO getTotalLendMoneyInfo();
 
   public abstract GetNewOrderRequestDTO getTotalLendPersonInfo();
+  
+  public abstract String getHomeMessage();
 }
