@@ -13,6 +13,7 @@
 		<typeAlias type="com.borrow.supermarket.model.CreditModel" alias="CreditModel"/>
 		<typeAlias type="com.borrow.supermarket.model.SafeModel" alias="SafeModel"/>
 		<typeAlias type="com.borrow.supermarket.model.OrderModel" alias="OrderModel"/>
+		<typeAlias type="com.borrow.supermarket.model.ContentModel" alias="ContentModel"/>
 		<typeAlias type="com.borrow.supermarket.response.result.LendPageDTOResult" alias="LendPageDTOResult"/>
 		<typeAlias type="com.borrow.supermarket.response.result.SafePageResultDTO" alias="SafePageResultDTO"/>
 		<typeAlias type="com.borrow.supermarket.response.result.CreditPageResultDTO" alias="CreditPageResultDTO"/>

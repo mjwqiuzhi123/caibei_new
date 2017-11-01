@@ -85,9 +85,7 @@ window.location.href = "${pageContext.request.contextPath}/admin/home/homeMessag
     <div class="rightinfo">
     <div class="tools">
     <ul class="seachform">
-    <li><label>平台名称</label><input name="criditName" type="text" value="" class="scinput"></li> 
-    <li><label>&nbsp;</label><input name="" type="submit" class="scbtn" value="查询"></li>
-    <li><label>&nbsp;</label><input name="" type="button" class="scbtn" value="平台添加" onclick="homeMessageAdd()">
+    <li><label>&nbsp;</label><input name="" type="button" class="scbtn" value="平台添加" onclick="homeMessageAdd()"/></li>
     </ul>
     </div>
     
@@ -97,27 +95,12 @@ window.location.href = "${pageContext.request.contextPath}/admin/home/homeMessag
     <thead>
     <tr id="thdiv">
     <th>首页推送信息</th>
-<!--     <th>操作</th> do by mjw-->
     </tr>
     </thead>
     <tbody>
     <c:forEach var="homeMessage" items="${homeMessageList}">
 	    <tr id="divtr">
 		   <td style="height: 50px">${homeMessage}</td>
-<%-- 		   <td>
-			    <center>
-			      <a href="${pageContext.request.contextPath}/admin/credit/creditDetails.json?identifier=${creditModel.identifier}" class="tablelink">详情</a>     
-			      <c:if test="${creditModel.status eq 1 or creditModel.status eq 3}">
-			      <a href="${pageContext.request.contextPath}/admin/credit/creditStatusUpdate.json?identifier=${creditModel.identifier}&status=2" class="tablelink">上线</a>
-			      </c:if>
-			      <c:if test="${creditModel.status eq 2}">
-			      <a href="${pageContext.request.contextPath}/admin/credit/creditStatusUpdate.json?identifier=${creditModel.identifier}&status=3" class="tablelink">下线</a>
-			      </c:if>
-			      <c:if test="${creditModel.status eq 1 or creditModel.status eq 3}">
-			        <a href="${pageContext.request.contextPath}/admin/credit/creditUpdatePage.json?identifier=${creditModel.identifier}" class="tablelink">编辑</a>
-			      </c:if>
-			     </center>
-		   </td> do by mjw--%>
 	    </tr>
     </c:forEach>
     </tbody>

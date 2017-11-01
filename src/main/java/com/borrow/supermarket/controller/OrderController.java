@@ -75,6 +75,7 @@ public class OrderController extends BaseController
     }return re;
   }
 
+  // 获取首页统计内容
   @RequestMapping(value={"/newOrderInfo1.json"}, produces={"application/json; charset=utf-8"})
   public ResponseEntity getNewOrder(HttpServletRequest request, HttpServletResponse response)
   {
@@ -88,17 +89,29 @@ public class OrderController extends BaseController
     }return re;
   }
   
-  // add by mjw 首页推送信息
-  @RequestMapping(value={"/newOrderInfo.json"}, method={org.springframework.web.bind.annotation.RequestMethod.POST}, produces={"application/json; charset=utf-8"})
-  //public String lendPage(HttpServletRequest request, ModelMap model, @Valid @ModelAttribute("lendPage") LendPageRequestDTO lendPageRequestDTO, BindingResult bind) {
-  public String homeMessagePage(HttpServletRequest request, HttpServletResponse response) {
-	 try { 
-    	PageWebDTOResult<HomeMessDisDTO<ProductDTO>> pageresult = this.orderServiceI.getHomeMessage();
-    	return pageresult.getAsJSON();
-    } catch (Exception e) {
-    	ResponseEntity messageResult = new ResponseEntity();
-    	messageResult.setMsg(ServiceCode.EXCEPTION);
-    	return messageResult.getAsJSON();
-    }
-  }
+	// add by mjw 首页推送信息
+	@RequestMapping(value = { "/newOrderInfo.json" }, method = { org.springframework.web.bind.annotation.RequestMethod.POST }, produces = { "application/json; charset=utf-8" })
+	public String homeContentPage(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			PageWebDTOResult<Object> pageresult = this.orderServiceI.getContent(1);
+			return pageresult.getAsJSON();
+		} catch (Exception e) {
+			ResponseEntity messageResult = new ResponseEntity();
+			messageResult.setMsg(ServiceCode.EXCEPTION);
+			return messageResult.getAsJSON();
+		}
+	}
+  
+	// add by mjw 发现内容信息
+	@RequestMapping(value = { "/findOrderInfo.json" }, method = { org.springframework.web.bind.annotation.RequestMethod.POST }, produces = { "application/json; charset=utf-8" })
+	public String findContentPage(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			PageWebDTOResult<Object> pageresult = this.orderServiceI.getContent(2);
+			return pageresult.getAsJSON();
+		} catch (Exception e) {
+			ResponseEntity messageResult = new ResponseEntity();
+			messageResult.setMsg(ServiceCode.EXCEPTION);
+			return messageResult.getAsJSON();
+		}
+	}
 }

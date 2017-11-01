@@ -55,8 +55,8 @@
       where o.id = #{id}
    </select>
 
-	<select id="getHomeMessage"  resultType="String">
-		select context from supermarket.message where type = 1
+	<select id="getContent"  parameterType="Integer" resultType="String">
+		select context from supermarket.message where type = #{trpe}
 	</select>
    
    <update id="updateOrderStatus" parameterType="OrderModel">

@@ -18,5 +18,5 @@ public abstract interface OrderDao extends BaseMapper<OrderModel>
 
   public abstract GetNewOrderRequestDTO getTotalLendPersonInfo();
   
-  public abstract String getHomeMessage();
+  public abstract String getContent(Integer type);
 }

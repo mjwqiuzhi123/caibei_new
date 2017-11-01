@@ -1,6 +1,5 @@
 package com.borrow.supermarket.service;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,17 +21,11 @@ import com.borrow.supermarket.model.UserModel;
 import com.borrow.supermarket.mybatis.PageParameter;
 import com.borrow.supermarket.request.dto.GetNewOrderRequestDTO;
 import com.borrow.supermarket.request.dto.GetsaveOrderRequestDTO;
-import com.borrow.supermarket.request.dto.HomeMessDisDTO;
-import com.borrow.supermarket.request.dto.ProductDTO;
 import com.borrow.supermarket.response.result.GetUserOrdersResultDTO;
 import com.borrow.supermarket.response.result.GetsaveOrderDTOResponse;
-import com.borrow.supermarket.response.result.LendPageDTOResult;
 import com.borrow.supermarket.util.PageWebDTOResult;
 import com.borrow.supermarket.util.ResponseEntity;
 import com.borrow.supermarket.util.ServiceCode;
-import com.fasterxml.jackson.core.JsonParser.Feature;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
 public class OrderService
@@ -168,9 +161,9 @@ public class OrderService
 	    }return null;
 	  }
 	  
-	  // add by mjw 首页信息
-	  @SuppressWarnings("unchecked")
-	public PageWebDTOResult<HomeMessDisDTO<ProductDTO>> getHomeMessage()
+	  // add by mjw 首页信息(使用ObjectMapper)太局限
+/*	  @SuppressWarnings("unchecked")
+	public PageWebDTOResult<HomeMessDisDTO<ProductDTO>> getHomeMessage1()
 	  {
 	    PageParameter pageweb = new PageParameter();
 	    String homeMessage = this.orderDaoI.getHomeMessage();
@@ -186,38 +179,39 @@ public class OrderService
 				homeMessDisDTO.add(homeMess);
 			}
 			pageWebDTOResult.setListData(homeMessDisDTO);
+			return pageWebDTOResult;
 		} catch (IOException e) {
 			pageWebDTOResult.setMsg(ServiceCode.EXCEPTION);
 			e.printStackTrace();
 		}
 	    return pageWebDTOResult;
-	  }
+	  }*/
 	  
 	  // 获取首页数据(使用JSONObject)
-	public PageWebDTOResult<T> getHomeMessage1() {
+	public PageWebDTOResult<Object> getContent(Integer type) {
 		PageParameter pageweb = new PageParameter();
-		String homeMessage = this.orderDaoI.getHomeMessage();
-		JSONObject jb = null;
-		JSONArray ja = null;
-		List<T> homeMessDisDTO = new ArrayList<HomeMessDisDTO<ProductDTO>>();
-		PageWebDTOResult<HomeMessDisDTO<ProductDTO>> pageWebDTOResult = new PageWebDTOResult<HomeMessDisDTO<ProductDTO>>(pageweb.getPageSize(), pageweb.getPageNow(), pageweb.getRowCount(), pageweb.getPageCount(), homeMessDisDTO);
-		if ((homeMessage != null) && (homeMessage.charAt(0) == '[')) {
-			ja = JSONArray.fromObject(homeMessage);
-		} else {
-			jb = JSONObject.fromObject(homeMessage);
-		}
-		HomeMessDisDTO<ProductDTO>[] jsonArray = null;
+		List<Object> homeMessDisDTO = new ArrayList<Object>();
+		PageWebDTOResult<Object> pageWebDTOResult = new PageWebDTOResult<Object>(pageweb.getPageSize(), pageweb.getPageNow(), pageweb.getRowCount(), pageweb.getPageCount(), homeMessDisDTO);
 		try {
-			jsonArray = om.readValue(homeMessage, HomeMessDisDTO[].class);
-			for (HomeMessDisDTO<ProductDTO> homeMess : jsonArray) {
-				homeMessDisDTO.add(homeMess);
+			String homeMessage = this.orderDaoI.getContent(type);
+			if ((homeMessage != null) && (homeMessage.trim().charAt(0) == '[')) {
+				JSONArray ja = JSONArray.fromObject(homeMessage);
+				if (ja.size() > 0) {
+					for (int i = 0; i < ja.size(); i++) {
+						JSONObject job = ja.getJSONObject(i);
+						homeMessDisDTO.add(job);
+					}
+				}
+			} else {
+				JSONObject jb = JSONObject.fromObject(homeMessage);
+				homeMessDisDTO.add(jb);
 			}
 			pageWebDTOResult.setListData(homeMessDisDTO);
-		} catch (IOException e) {
+			return pageWebDTOResult;
+		} catch (Exception e) {
 			pageWebDTOResult.setMsg(ServiceCode.EXCEPTION);
 			e.printStackTrace();
 		}
 		return pageWebDTOResult;
-
 	}
 }
