@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.borrow.supermarket.dao.ContentDao">
+
+	<!-- add by mjw 首页信息 -->
+	<select id="getContent" parameterType="ContentModel" resultType="String">
+		select context from supermarket.message where type = #{type}
+	</select>
+
+	<insert id="saveContent" parameterType="ContentModel">
+		insert into supermarket.message (context,type) values (#{content},#{type})
+	</insert>
+
+	<update id="updateContent" parameterType="ContentModel">
+		update supermarket.message set context = #{content} where type = #{type}
+	</update>
+
+	<select id="hasContent" resultType="Integer">
+		select count(1) from supermarket.message where type = #{type}
+	</select>
+	<!-- add by mjw 首页信息 -->
+	
+</mapper>
