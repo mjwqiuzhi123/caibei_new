@@ -75,7 +75,7 @@ $(document).ready(function(){
 	    <li><label>平台图标</label><input type="file" name="file"/></li>
 	    <li><label>平台URL地址</label><input name="criditUrl" type="text" class="dfinput" /></li>
 	    <li><label>平台特点</label><input name="criditSpecial" type="text" class="dfinput" value="" /></li> -->
-	    <li><label>首页信息</label><textarea name="homeMessage" style="height: 200px; width: 500px; border:solid; border-color:black; background-color:transparent;"></textarea></li>
+	    <li><label>首页信息</label><textarea name="homeContent" style="height: 200px; width: 500px; border:solid; border-color:black; background-color:transparent;"></textarea></li>
 	     <li>
 	         <label>&nbsp;</label><input name="" type="submit" class="btn" value="确认保存"/>
 	         <label>&nbsp;</label><input name="" onclick="javascript:history.go(-1)" type="button" class="btn" value="返回"/>
