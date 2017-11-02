@@ -69,9 +69,9 @@ $(document).ready(function(){
     </div>
     <form action="${pageContext.servletContext.contextPath}/admin/find/findContentAdd.json" method="post" enctype="multipart/form-data">
 	    <div class="formbody">
-	    <div class="formtitle"><span>首页信息</span></div>
+	    <div class="formtitle"><span>发现内容</span></div>
 	    <ul class="forminfo">
-	    <li><label>首页信息</label><textarea name="findContent" style="height: 200px; width: 500px; border:solid; border-color:black; background-color:transparent;"></textarea></li>
+	    <li><label>发现内容</label><textarea name="findContent" style="height: 200px; width: 500px; border:solid; border-color:black; background-color:transparent;"></textarea></li>
 	     <li>
 	         <label>&nbsp;</label><input name="" type="submit" class="btn" value="确认保存"/>
 	         <label>&nbsp;</label><input name="" onclick="javascript:history.go(-1)" type="button" class="btn" value="返回"/>

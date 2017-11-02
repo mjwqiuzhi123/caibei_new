@@ -94,8 +94,7 @@ window.location.href = "${pageContext.request.contextPath}/admin/find/findConten
     
     <thead>
     <tr id="thdiv">
-    <th>首页推送信息</th>
-<!--     <th>操作</th> do by mjw-->
+    <th>发现内容</th>
     </tr>
     </thead>
     <tbody>
